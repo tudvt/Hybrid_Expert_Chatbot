@@ -1,0 +1,6 @@
+Error 0x80070005 usually means you do not have the required permissions.
+
+Fix:
+- Run the installer as administrator.
+- Check your antivirus settings.
+- Make sure you have write access to the install directory.
