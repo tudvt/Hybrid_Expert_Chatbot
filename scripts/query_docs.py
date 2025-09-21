@@ -5,16 +5,27 @@ import pickle
 def load_search_system():
     """Load the FAISS index and metadata"""
     try:
+        print("\n=== Loading Search System ===", flush=True)
+        
+        print("\nInitializing and loading model...", flush=True)
+        # Load the embedding model - will use cache if available
+        model_name = "sentence-transformers/all-MiniLM-L6-v2"
+        embed_model = SentenceTransformer(model_name)
+            
+        # Load the embedding model
+        print("Initializing embedding model...", flush=True)
+        embed_model = SentenceTransformer(model_name)
+        
         # Load the FAISS index
+        print("Loading FAISS index...", flush=True)
         index = faiss.read_index("data/faiss_index.idx")
         
         # Load the metadata
+        print("Loading metadata...", flush=True)
         with open("data/chunks_meta.pkl", "rb") as f:
             chunks = pickle.load(f)
             
-        # Load the embedding model
-        embed_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
-        
+        print("=== System Loaded Successfully ===\n", flush=True)
         return index, chunks, embed_model
     except Exception as e:
         print(f"Error loading search system: {str(e)}")
