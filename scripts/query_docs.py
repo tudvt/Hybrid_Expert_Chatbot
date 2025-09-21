@@ -50,14 +50,23 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Search through documents using FAISS index")
     parser.add_argument("query", help="The search query")
     parser.add_argument("--top_k", type=int, default=4, help="Number of results to return")
+    parser.add_argument("--no-wait", action="store_true", help="Don't wait for user input after showing results")
     args = parser.parse_args()
     
-    print(f"\nSearching for: {args.query}")
-    print(f"Top {args.top_k} results:\n")
+    print("\n" + "="*80)
+    print(f"Searching for: {args.query}")
+    print(f"Top {args.top_k} results:")
+    print("="*80 + "\n")
     
     results = search_documents(args.query, k=args.top_k)
     
-    for i, result in enumerate(results, 1):
-        print(f"--- Result {i} (distance: {result['score']:.2f}) ---")
-        print(result["text"])
-        print()
+    if not results:
+        print("No results found or error loading search system.")
+    else:
+        for i, result in enumerate(results, 1):
+            print(f"\n--- Result {i} (distance: {result['score']:.2f}) ---")
+            print(result["text"])
+            print("-"*80)
+    
+    if not args.no_wait:
+        input("\nPress Enter to exit...")
