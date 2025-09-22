@@ -1,0 +1,8 @@
+Metadata-Version: 2.4
+Name: hybrid_expert_chatbot
+Version: 0.1
+Requires-Dist: sentence-transformers
+Requires-Dist: faiss-cpu
+Requires-Dist: spacy
+Requires-Dist: numpy
+Dynamic: requires-dist

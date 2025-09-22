@@ -1,0 +1,30 @@
+patterns:
+  error_codes:
+    pattern: 0x[0-9A-Fa-f]+
+    description: Windows error codes
+    examples:
+      - 0x80070005
+      - 0x8007052E
+  
+  version_numbers:
+    pattern: \d+\.\d+(\.\d+)?
+    description: Software versions
+    examples:
+      - 10.0.1
+      - 2.5
+  
+  product_names:
+    spacy_label: PRODUCT
+    description: Software product names
+    custom_terms:
+      - Windows
+      - Office
+      - Edge
+      - Microsoft
+  
+  actions:
+    pattern: (install|uninstall|update|fix|repair)
+    description: User actions
+    examples:
+      - install
+      - fix
